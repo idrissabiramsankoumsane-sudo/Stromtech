@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Studio de design | Stromtech</title>
+
+
+
+
+<link rel="stylesheet" href="assets/fonts/fonts.css"><link rel="stylesheet" href="style.css">
+<style>
+.studio-main[hidden]{display:none!important}
+.studio-access[hidden]{display:none!important}
+.studio-access{min-height:calc(100vh - 90px);display:grid;place-items:center;padding:32px 18px}
+.studio-access-card{width:min(560px,100%);padding:36px;border:1px solid #ffffff22;border-radius:24px;background:#141d32;text-align:center;box-shadow:0 24px 80px #0005}
+.studio-access-mark{color:#38d6b0;font-size:.78rem;font-weight:900;letter-spacing:.16em}
+.studio-access-card h1{font-size:clamp(1.8rem,5vw,2.7rem);margin:16px 0}
+.studio-access-card p{color:#b8c2d9;margin:0 0 24px}
+.studio-access-card .btn{display:block}
+.studio-access-home{display:inline-block;margin-top:18px;color:#b8c2d9}
+</style>
+</head>
+<body>
+<header class="site-header">
+ <div class="container nav">
+  <a class="logo" href="index.html">strom<b>tech</b></a>
+  <nav class="links" aria-label="Navigation principale">
+   <a href="index.html">Accueil</a><a href="services.html">Services</a><a href="contact.html">Contact</a><a href="studio.html" aria-current="page">Studio design</a>
+  </nav>
+  <div class="bar"><button class="btn btn-line theme-toggle" id="studioThemeToggle" type="button" aria-pressed="false" aria-label="Passer au thème sombre"><span>☾</span><span class="tt-label"> Thème sombre</span></button><a class="btn btn-line" href="espace.html">Mon espace</a></div>
+ </div>
+</header>
+<section class="studio-access" id="studioAccessGate" role="status">
+ <div class="studio-access-card">
+  <span class="studio-access-mark">STROMTECH · ÉQUIPE</span>
+  <h1>Studio Design réservé à l’équipe</h1>
+  <p>L’éditeur complet est un outil de production interne. Les clients peuvent choisir un style et commander leur création depuis nos pages de services.</p>
+  <a class="btn btn-blue" href="connexion.html?next=studio.html">Connexion équipe Stromtech</a>
+  <a class="studio-access-home" href="index.html">Retour au site public</a>
+ </div>
+</section>
+<main class="container studio-main" hidden>
+ <div class="studio-head">
+  <p class="studio-kicker">STROMTECH CREATIVE WORKSPACE</p>
+  <h1 class="block-title">Studio de design</h1>
+  <p class="block-intro" style="margin-bottom:0">Crée un site Web, une application, un CV professionnel ou une affiche. Personnalise ta composition, visualise le résultat et envoie ton projet à Stromtech.</p>
+  <button class="studio-back-hub" id="studioBackHub" type="button" hidden>← Tous les ateliers</button>
+  <section class="studio-workspace-banner" id="studioWorkspace" hidden aria-live="polite"><div><span class="studio-workspace-eyebrow" id="studioWorkspaceEyebrow">ATELIER STROMTECH</span><h2 id="studioWorkspaceTitle">Atelier de création</h2><p id="studioWorkspaceDescription">Choisis un modèle puis personnalise chaque élément.</p></div><span class="studio-workspace-step">1. Modèle <i>→</i> 2. Personnalisation <i>→</i> 3. Aperçu</span></section>
+  <p class="shared" id="sharedNote" hidden>Tu regardes une maquette partagée dans une conversation. Tu peux la modifier ici, sans effet sur l’original.</p>
+ </div>
+
+ <section class="studio-service-hub" id="studioServiceHub" aria-labelledby="studioHubTitle">
+  <div class="studio-hub-intro"><span class="studio-hub-eyebrow">TON ESPACE CRÉATIF</span><h2 id="studioHubTitle">Que souhaites-tu créer aujourd’hui ?</h2><p>Choisis un atelier. Chaque service possède ses propres modèles, formats et outils de conception.</p></div>
+  <div class="studio-service-grid">
+   <button class="studio-service-card service-web" type="button" data-studio-service="site"><span class="studio-service-icon">⌘</span><span class="studio-service-tag">WEB DESIGN</span><strong>Sites Web</strong><span>Pages d’accueil, vitrines, portfolios et boutiques.</span><b>Ouvrir l’atelier <i>→</i></b></button>
+   <button class="studio-service-card service-app" type="button" data-studio-service="app"><span class="studio-service-icon">▣</span><span class="studio-service-tag">APP DESIGN</span><strong>Applications mobiles</strong><span>Écrans, parcours, interfaces et expériences mobiles.</span><b>Ouvrir l’atelier <i>→</i></b></button>
+   <button class="studio-service-card service-cv" type="button" data-studio-service="cv"><span class="studio-service-icon">▤</span><span class="studio-service-tag">CV DESIGN</span><strong>CV professionnels</strong><span>Modèles de CV, rubriques et mises en page soignées.</span><b>Ouvrir l’atelier <i>→</i></b></button>
+   <button class="studio-service-card service-poster" type="button" data-studio-service="poster"><span class="studio-service-icon">▧</span><span class="studio-service-tag">GRAPHIC DESIGN</span><strong>Affiches et visuels</strong><span>Événements, promotions, annonces et publications.</span><b>Ouvrir l’atelier <i>→</i></b></button>
+  </div>
+  <p class="studio-hub-footnote">Tu pourras revenir ici à tout moment pour changer d’atelier.</p>
+ </section>
+
+ <form class="studio-editor" id="controls" hidden onsubmit="return false">
+  <aside class="studio-panel studio-tools" aria-label="Outils et structure du projet">
+   <div class="panel-heading"><span class="panel-index">01</span><div><b>Structure</b><small>Choisis ton projet</small></div></div>
+   <div class="grp"><h3>Ce que tu veux créer</h3><div class="seg" id="typeSeg"></div></div>
+   <div class="grp page-manager"><h3>Pages du projet</h3><div id="pageList" class="page-list" aria-label="Pages du projet"></div><div class="page-actions"><button type="button" id="addPage">+ Nouvelle page</button><button type="button" id="renamePage">Renommer</button><button type="button" id="duplicatePage">Dupliquer</button><button type="button" id="deletePage" class="danger-action">Supprimer</button></div><p class="identity-help" id="pageStatus" aria-live="polite">1 page · chaque page garde son contenu.</p></div><div class="grp"><h3 id="studioTemplateHeading">Modèles de départ</h3><p class="studio-template-help" id="studioTemplateHelp">Choisis une base de création pour commencer.</p><div class="opts" id="tplList"></div></div>
+   <div class="grp"><h3 id="secLegend">Sections</h3><div id="secList"></div><p class="identity-help">Pour Galerie et Produits, active la section puis ajoute tes propres images.</p></div>
+   <div class="grp studio-layers-panel"><h3>Calques et éléments</h3><p class="identity-help">Sélectionne, duplique et réorganise les éléments de ta composition.</p><div id="studioLayers" class="studio-layers" aria-live="polite"></div></div>
+  </aside>
+
+  <section class="studio-stage" aria-label="Zone centrale de création et aperçu">
+   <div class="studio-stagebar">
+    <div class="stage-heading"><span class="live-dot"></span><div><b>Zone de création</b><small id="viewLabel">Aperçu du site · ordinateur</small></div></div>
+    <div class="viewport-switch" role="group" aria-label="Format de prévisualisation">
+     <button type="button" data-viewport="desktop" aria-pressed="true"><span aria-hidden="true">▣</span> Desktop</button>
+     <button type="button" data-viewport="tablet" aria-pressed="false"><span aria-hidden="true">▤</span> Tablette</button>
+     <button type="button" data-viewport="mobile" aria-pressed="false"><span aria-hidden="true">▯</span> Mobile</button>
+    </div>
+    <div class="block-toolbar" role="group" aria-label="Ajouter un bloc">
+     <button type="button" id="addTextBlock">+ Texte</button>
+     <button type="button" id="addButtonBlock">+ Bouton</button>
+     <button type="button" id="addImageBlock">+ Image / logo</button>
+     <button type="button" id="addShapeBlock">+ Forme</button>
+     <input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+    </div>
+   </div>
+   <div class="preview-wrap" aria-label="Aperçu en direct">
+    <div class="frame" id="frame">
+     <div class="frame-bar"><i></i><i></i><i></i></div>
+     <div class="pv" id="pv"></div>
+    </div>
+   </div>
+   <p class="stage-hint"><span aria-hidden="true">✦</span> Les changements apparaissent directement dans l’aperçu.</p>
+  </section>
+
+  <aside class="studio-panel studio-properties" aria-label="Propriétés et personnalisation">
+   <div class="panel-heading"><span class="panel-index">02</span><div><b>Personnalisation</b><small>Règle ton identité visuelle</small></div></div>
+   <div class="grp element-inspector" id="elementInspector" aria-live="polite">
+    <h3>Élément sélectionné</h3>
+    <p class="inspector-empty" id="inspectorEmpty">Clique sur un texte ou un titre dans l’aperçu pour le modifier.</p>
+    <div id="inspectorFields" hidden>
+     <p class="inspector-name" id="selectedElementName"></p>
+     <label for="elementText" class="field-label" id="elementTextLabel">Texte</label>
+     <textarea id="elementText" rows="3" maxlength="200"></textarea>
+     <label for="elementColor" class="field-label" id="elementColorLabel">Couleur du texte</label>
+     <input id="elementColor" type="color" value="#14161f">
+     <div id="blockStyleGroup" class="block-style-group" hidden>
+      <label for="blockFontSize" class="field-label">Taille du texte <output id="blockFontSizeValue">16 px</output></label>
+      <input id="blockFontSize" type="range" min="12" max="48" step="1" value="16">
+      <label for="blockTextAlign" class="field-label">Alignement</label>
+      <select id="blockTextAlign"><option value="left">À gauche</option><option value="center">Centré</option><option value="right">À droite</option></select>
+      <label for="blockFontWeight" class="field-label">Épaisseur</label>
+      <select id="blockFontWeight"><option value="normal">Normale</option><option value="600">Semi-gras</option><option value="700">Gras</option></select>
+      <label for="blockFontFamily" class="field-label">Police</label>
+      <select id="blockFontFamily"><option value="Arial, sans-serif">Arial</option><option value="Georgia, serif">Georgia</option><option value="'Trebuchet MS', sans-serif">Trebuchet</option><option value="'Courier New', monospace">Courier</option><option value="system-ui, sans-serif">Système</option></select>
+      <label class="image-border-option"><input id="blockItalic" type="checkbox"> Italique</label>
+      <label class="image-border-option"><input id="blockUnderline" type="checkbox"> Souligné</label>
+      <label for="blockLetterSpacing" class="field-label">Espacement des lettres <output id="blockLetterSpacingValue">0 px</output></label>
+      <input id="blockLetterSpacing" type="range" min="-1" max="8" step="0.5" value="0">
+      <label for="blockLineHeight" class="field-label">Interligne <output id="blockLineHeightValue">1.4</output></label>
+      <input id="blockLineHeight" type="range" min="1" max="2.2" step="0.1" value="1.4">
+      <label for="blockBackground" class="field-label">Couleur de fond</label>
+      <input id="blockBackground" type="color" value="#2340ff">
+      <label for="blockRadius" class="field-label">Arrondi <output id="blockRadiusValue">12 px</output></label>
+      <input id="blockRadius" type="range" min="0" max="32" step="1" value="12">
+     </div>
+     <div id="imageSizeGroup" hidden>
+      <label for="imageWidth" class="field-label">Largeur de l’image</label>
+      <input id="imageWidth" type="range" min="15" max="100" step="1" value="60">
+      <p class="drag-hint">Tu peux aussi redimensionner l’image avec le curseur.</p>
+      <label for="imageFit" class="field-label">Ajustement de l’image</label>
+      <select id="imageFit"><option value="contain">Afficher toute l’image</option><option value="cover">Remplir le cadre</option><option value="fill">Étirer au cadre</option></select>
+      <label for="imageRadius" class="field-label">Arrondi des coins <output id="imageRadiusValue">0 px</output></label>
+      <input id="imageRadius" type="range" min="0" max="40" step="1" value="0">
+      <label class="image-border-option"><input id="imageBorder" type="checkbox"> Ajouter une bordure</label>
+      <label for="imageBorderColor" class="field-label">Couleur de la bordure</label>
+      <input id="imageBorderColor" type="color" value="#dce2ee">
+     </div>
+     <div id="blockAlignGroup" class="block-align-group" hidden>
+      <h4>Alignement horizontal</h4>
+      <div class="block-align-actions">
+       <button type="button" id="alignBlockLeft" aria-label="Aligner à gauche" title="À gauche">⇤ Gauche</button>
+       <button type="button" id="alignBlockCenter" aria-label="Centrer" title="Centrer">↔ Centre</button>
+       <button type="button" id="alignBlockRight" aria-label="Aligner à droite" title="À droite">⇥ Droite</button>
+      </div>
+     </div>
+     <div id="blockPositionGroup" class="block-position-group" hidden>
+      <h4>Position de l’élément</h4>
+      <label for="blockPositionX" class="field-label">Horizontal <output id="blockPositionXValue">0 px</output></label>
+      <input id="blockPositionX" type="range" min="-500" max="500" step="1" value="0">
+      <label for="blockPositionY" class="field-label">Vertical <output id="blockPositionYValue">0 px</output></label>
+      <input id="blockPositionY" type="range" min="-500" max="500" step="1" value="0">
+      <button type="button" id="resetBlockPosition" class="btn btn-line">Réinitialiser la position</button>
+     </div>
+     <div class="block-actions" id="blockActions" hidden>
+      <p class="drag-hint">Fais glisser le bloc directement dans l’aperçu pour le déplacer.</p>
+      <button type="button" id="deleteBlock" class="danger-action">Supprimer le bloc</button>
+     </div>
+     <button class="btn btn-line inspector-clear" id="clearSelection" type="button">Désélectionner</button>
+    </div>
+   </div>
+   <div class="grp"><h3>Identité de ton entreprise</h3>
+    <p class="identity-help">Choisis d’afficher le nom de ton entreprise ou son logo.</p>
+    <div class="seg identity-switch" id="brandModeSeg">
+     <button type="button" id="brandNameMode" aria-pressed="true">Afficher le nom</button>
+     <button type="button" id="brandLogoMode" aria-pressed="false">Utiliser un logo</button>
+    </div>
+    <div id="brandNameField"><label for="name" class="sr" style="position:absolute;left:-9999px">Nom</label><input id="name" type="text" maxlength="60" placeholder="Nom de ton entreprise" autocomplete="off"></div>
+    <div id="brandLogoField" hidden>
+     <button type="button" class="btn btn-line" id="chooseBrandLogo">Choisir mon logo</button>
+     <input id="brandLogoUpload" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+     <p class="identity-help" id="brandLogoStatus">PNG, JPG ou WebP · 5 Mo maximum</p>
+     <label for="brandLogoWidth" class="field-label">Largeur du logo <output id="brandLogoWidthValue">150 px</output></label>
+     <input id="brandLogoWidth" type="range" min="60" max="260" step="5" value="150">
+     <label class="chk logo-border-toggle"><input id="brandLogoBorder" type="checkbox"> Ajouter une bordure</label>
+     <div class="logo-border-options" id="brandLogoBorderOptions" hidden>
+      <label for="brandLogoBorderColor" class="field-label">Couleur de la bordure</label><input id="brandLogoBorderColor" type="color" value="#dce3f5">
+      <label for="brandLogoBorderWidth" class="field-label">Épaisseur de la bordure <output id="brandLogoBorderWidthValue">1 px</output></label><input id="brandLogoBorderWidth" type="range" min="1" max="8" step="1" value="1">
+     </div>
+     <button type="button" class="text-action" id="removeBrandLogo" hidden>Retirer le logo</button>
+    </div>
+    <label for="slogan" class="sr" style="position:absolute;left:-9999px">Slogan</label><input id="slogan" type="text" maxlength="120" placeholder="Ton slogan" autocomplete="off">
+   </div>
+   <div class="grp"><h3>Couleur principale</h3><div class="sws" id="swatches"></div><div class="sws custom-color"><label for="color">Couleur personnalisée</label><input id="color" type="color" value="#2340ff"></div></div>
+   <div class="grp"><h3>Style visuel</h3>
+    <div class="seg" id="themeSeg"></div>
+    <label for="font" class="field-label">Typographie</label>
+    <select id="font"><option value="moderne">Police moderne</option><option value="elegante">Police élégante</option><option value="affirmee">Police affirmée</option></select>
+    <label class="field-label">Forme des éléments</label>
+    <div class="seg" id="radiusSeg"></div>
+   </div>
+   <div class="grp poster-options" id="posterOptions" hidden>
+    <h3>Options avancées de l’affiche</h3>
+    <label for="posterFormat" class="field-label">Format de création</label>
+    <select id="posterFormat">
+     <option value="portrait">Affiche portrait · 4:5</option>
+     <option value="square">Publication carrée · 1:1</option>
+     <option value="story">Story / statut · 9:16</option>
+     <option value="landscape">Format paysage · 16:9</option>
+     <option value="a4">Impression A4</option>
+    </select>
+    <label for="posterVisualHeight" class="field-label">Place réservée au visuel <output id="posterVisualHeightValue">310 px</output></label>
+    <input id="posterVisualHeight" type="range" min="120" max="460" step="10" value="310">
+    <label for="posterImageFit" class="field-label">Ajustement de la photo</label>
+    <select id="posterImageFit"><option value="cover">Remplir le cadre</option><option value="contain">Afficher toute la photo</option></select>
+    <p class="identity-help">Tu peux aussi ajouter plusieurs blocs de texte, des images et un logo dans la zone de création.</p>
+   </div>
+   <div class="grp"><h3>Instructions complémentaires</h3>
+    <label for="notes" class="sr" style="position:absolute;left:-9999px">Remarques</label>
+    <textarea id="notes" maxlength="1000" placeholder="Une fonction en plus, un site que tu aimes, un logo à intégrer…"></textarea>
+   </div>
+   <div class="studio-submit">
+    <div class="poster-export-note" id="posterOrderNote" hidden><h3>Ton affiche est prête à être finalisée</h3><p>Tu peux construire et prévisualiser ton affiche gratuitement. Pour obtenir le fichier final, envoie ta maquette à Stromtech et demande un devis.</p></div>
+    <div class="poster-export" id="posterExport" hidden>
+     <h3 id="designExportTitle">Exporter ton CV</h3>
+     <p class="small" id="designExportHelp">Télécharge ton CV au format PDF A4, prêt à être partagé ou imprimé.</p>
+     <div class="poster-export-actions">
+      <button class="btn btn-line" id="exportPosterPng" type="button" hidden>Télécharger en PNG</button>
+      <button class="btn btn-line" id="exportPosterPdf" type="button">Télécharger en PDF</button>
+     </div>
+     <p class="small" id="exportStatus" role="status" aria-live="polite"></p>
+    </div>
+    <div class="msg err" id="warn" role="alert" hidden></div>
+    <button class="btn btn-blue" id="sendBtn" type="button">Envoyer ma maquette à Stromtech</button>
+    <button class="btn btn-line" id="reset" type="button">Recommencer</button>
+    <p class="small">Il faut un compte pour envoyer ta maquette. Ton travail est gardé sur cet appareil si tu dois te connecter.</p>
+   </div>
+  </aside>
+ </form>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="poster-canvas.js"></script>
+<script src="studio-modeles.js"></script>
+<script src="studio.js"></script>
+<script>
+(function(){
+  var gate=document.getElementById("studioAccessGate");
+  var workspace=document.querySelector("main.studio-main");
+  var adminId=window.STROMTECH&&window.STROMTECH.ADMIN_ID;
+  if(!window.sb||!adminId){gate.querySelector("p").textContent="La connexion sécurisée n’a pas pu être vérifiée. Recharge la page ou contacte Stromtech.";return;}
+  window.sb.auth.getSession().then(function(result){
+    var user=result.data&&result.data.session&&result.data.session.user;
+    if(user&&user.id===adminId){gate.hidden=true;workspace.hidden=false;}
+    else if(user){gate.querySelector("h1").textContent="Accès réservé à l’équipe Stromtech";gate.querySelector("p").textContent="Ce compte client ne peut pas ouvrir l’éditeur interne. Tu peux retourner aux services pour choisir un style et passer commande.";}
+  }).catch(function(){
+    gate.querySelector("p").textContent="Impossible de vérifier la connexion. Recharge la page puis réessaie.";
+  });
+})();
+</script>
+<script>
+(function(){
+  var button=document.getElementById("studioThemeToggle");
+  if(!button)return;
+  var key="stromtech_studio_interface_theme_v2";
+  function apply(theme){
+    var dark=theme==="dark";
+    document.body.classList.toggle("studio-dark",dark);
+    button.setAttribute("aria-pressed",String(dark));
+    var ico=document.createElement("span");ico.textContent=dark?"☀":"☾";var lab=document.createElement("span");lab.className="tt-label";lab.textContent=dark?" Thème clair":" Thème sombre";button.replaceChildren(ico,lab);button.setAttribute("aria-label",dark?"Passer au thème clair":"Passer au thème sombre");
+  }
+  var saved=null;
+  try{saved=localStorage.getItem(key);}catch(e){}
+  var systemDark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+  apply(saved||(systemDark?"dark":"light"));
+  if(window.matchMedia){window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(event){var preference=null;try{preference=localStorage.getItem(key);}catch(e){}if(!preference)apply(event.matches?"dark":"light");});}
+  button.addEventListener("click",function(){
+    var next=document.body.classList.contains("studio-dark")?"light":"dark";
+    apply(next);
+    try{localStorage.setItem(key,next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
